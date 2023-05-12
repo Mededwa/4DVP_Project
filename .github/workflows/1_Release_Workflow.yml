@@ -38,4 +38,4 @@ jobs:
         context: . 
         file: Dockerfile 
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/4dvp_docker:${{ github.ref_name }}
+        tags: ${{ secrets.DOCKER_NAME }}/4dvp_docker:${{ github.ref_name }}

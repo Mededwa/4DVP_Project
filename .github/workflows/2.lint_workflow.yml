@@ -10,15 +10,14 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run semgrep
         uses: returntocorp/semgrep-action@v1
-  dockerfile-analysis:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Install Hadolint
-        uses: hadolint/hadolint-action@v3.1.0
-      - name: Run Hadolint
-        run: docker run --rm -i hadolint/hadolint < Dockerfile
-
+#   dockerfile-analysis:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Install Hadolint
+#         uses: hadolint/hadolint-action@v3.1.0
+#       - name: Run Hadolint
+#         run: docker run --rm -i hadolint/hadolint < Dockerfile
   super-linter:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest

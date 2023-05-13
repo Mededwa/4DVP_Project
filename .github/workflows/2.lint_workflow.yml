@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
       - name: Run semgrep
         uses: returntocorp/semgrep-action@v1
   dockerfile-analysis:
@@ -18,12 +18,14 @@ jobs:
       - uses: hadolint/hadolint-action@v3.1.0
         with:
           dockerfile: Dockerfile
+      - name: Run Hadolint
+        run: docker run --rm -i hadolint/hadolint < Dockerfile
   super-linter:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
       - name: Lint Code Base

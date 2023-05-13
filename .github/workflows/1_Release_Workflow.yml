@@ -1,10 +1,8 @@
 name: 1. Release Workflow
-
 on:
   push:
     tags:
       - '*'
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,7 +13,7 @@ jobs:
       uses: actions/setup-go@v4
       with:
         go-version: stable
-    - name: Build and Release
+    - name: Setup Goreleaser
       uses: goreleaser/goreleaser-action@v4
       if: success() && startsWith(github.ref, 'refs/tags/')
       with: 
@@ -23,11 +21,11 @@ jobs:
         args: release --clean
       env:
         GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
-    - name: Set up QEMU
+    - name: install QEMU
       uses: docker/setup-qemu-action@v2
-    - name: Set up Docker Buildx 
+    - name: install Docker Buildx 
       uses: docker/setup-buildx-action@v2
-    - name: Login to DockerHub
+    - name: Login DockerHub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKER_NAME }}

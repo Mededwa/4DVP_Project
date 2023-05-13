@@ -14,10 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: install Hadolint
-      - uses: hadolint/hadolint-action@v3.1.0
-        with:
-          dockerfile: Dockerfile
+      - name: Install Hadolint
+        uses: hadolint/hadolint-action@v3.1.0
       - name: Run Hadolint
         run: docker run --rm -i hadolint/hadolint < Dockerfile
 

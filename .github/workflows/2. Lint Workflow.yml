@@ -16,9 +16,11 @@ jobs:
   dockerfile-analysis:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Download Hadolint Docker image
-        run: docker pull hadolint/hadolint
+      - uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
       - name: Run Hadolint
         run: docker run --rm -i hadolint/hadolint < Dockerfile
 
